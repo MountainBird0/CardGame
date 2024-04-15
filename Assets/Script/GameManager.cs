@@ -98,10 +98,15 @@ public class GameManager : MonoBehaviour
             case 4 : NameText.text = "김재휘"; break;
             case 5 : NameText.text = "매니저님"; break;//매니저님
             case 6 : NameText.text = "매니저님2"; break; //매니저님22
-            case 7 : GameOver();break; //함정카드
+            case 7:
+                score.text = "함정카드 발동!!"; 
+                GameOver(); 
+                break; 
+                //함정카드
         }
         CloseText();
     }
+
 
     public void CloseText()
     {
@@ -111,6 +116,8 @@ public class GameManager : MonoBehaviour
     {
         NamePanel.SetActive(false);
     }
+
+
     private void HighScoreSet()
     {
         if (PlayerPrefs.HasKey(key))
