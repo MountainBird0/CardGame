@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        NamePanel.SetActive(false);
         Time.timeScale = 0f;
         endPanel.SetActive(true);
     }
@@ -65,7 +66,6 @@ public class GameManager : MonoBehaviour
             audioSource.PlayOneShot(clip);
             firstCard.DestoryCard();
             secondCard.DestoryCard();
-            //이름 판독하기 하면 되겠다. 내생각에는 idx값에 따라서 이름을 나타나게 하면되겠다.
 
             NamePanel.SetActive(true);
             CheckNickName();
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     public void CloseText()
     {
-        Invoke("CloseTextInvoke", 0.2f);
+        Invoke("CloseTextInvoke", 0.5f);
     }
     void CloseTextInvoke()
     {
