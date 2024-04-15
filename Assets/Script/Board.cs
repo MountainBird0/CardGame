@@ -24,6 +24,7 @@ public class Board : MonoBehaviour
         }
         GameManager.Instance.carCount = arr.Length-2;
     }
+    
     private void RandomArray(){
         int num;
         for (int i = 0; i < arr.Length; i++)

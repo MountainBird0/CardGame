@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject endPanel;
 
     public int carCount = 0;
-    float time;
+    float time=30;
 
     public Card firstCard;
     public Card secondCard;
@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public GameObject NamePanel;
     public Text NameText;
     
+    public GameObject Decreasetime;
+    public GameObject canvas;
     void Awake(){
         if(Instance==null){
             Instance=this;
@@ -45,9 +47,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
-        if(time>30)
+        if(time<0)
         {
             GameOver();
         }
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour
             }
         }
         else{
+            time -= 2;            
+            Instantiate(Decreasetime,canvas.transform);
             NamePanel.SetActive(true);
             NameText.text = "실패";
             firstCard.CloseCard();
