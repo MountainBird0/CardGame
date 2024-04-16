@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
     void CloseTextInvoke()
     {
         NamePanel.SetActive(false);
+        canOpen = true;
     }
 
 

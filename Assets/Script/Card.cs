@@ -15,17 +15,15 @@ public class Card : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip clip; 
+
+    
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     public void Setting(int number){
         idx = number;
         frontImage.sprite = Resources.Load<Sprite>($"team{idx}");
@@ -52,7 +50,6 @@ public class Card : MonoBehaviour
 
     void DestoryCardInvoke(){
         Destroy(gameObject);
-        GameManager.Instance.canOpen = true;
     }
     public void CloseCard(){
         Invoke("CloseCardInvoke", 0.5f);
@@ -61,13 +58,15 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
-        GameManager.Instance.canOpen=true;
     }
     IEnumerator Wait(){
+        
         yield return new WaitForSeconds(5);
-        if(GameManager.Instance.secondCard==null){
-            GameManager.Instance.firstCard = null;
-            CloseCardInvoke();
+        if(GameManager.Instance.firstCard!=null){
+            if(GameManager.Instance.firstCard.idx == this.idx){
+                GameManager.Instance.firstCard = null;
+                CloseCardInvoke();
+            }
         }
     }
 }
