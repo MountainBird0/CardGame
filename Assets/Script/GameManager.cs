@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2");
+
+        if(time > 20f)
+        {
+            timeTxt.color = Color.red;
+        }
+
         if(time>30)
         {
             GameOver();
