@@ -33,8 +33,7 @@ public class Card : MonoBehaviour
 
         audioSource.PlayOneShot(clip);
         anim.SetBool("isOpen", true);
-        front.SetActive(true);
-        back.SetActive(false);
+        StartCoroutine("FrontToBack");
 
         if(GameManager.Instance.firstCard==null){
             GameManager.Instance.firstCard = this;
@@ -68,5 +67,10 @@ public class Card : MonoBehaviour
                 CloseCardInvoke();
             }
         }
+    }
+    IEnumerator FrontToBack(){
+        yield return new WaitForSeconds(0.2f);
+        front.SetActive(true);
+        back.SetActive(false);
     }
 }
