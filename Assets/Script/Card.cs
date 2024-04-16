@@ -40,6 +40,7 @@ public class Card : MonoBehaviour
 
         if(GameManager.Instance.firstCard==null){
             GameManager.Instance.firstCard = this;
+            StartCoroutine("Wait");
         }else{
             GameManager.Instance.secondCard = this;
             GameManager.Instance.Matched();
@@ -61,5 +62,12 @@ public class Card : MonoBehaviour
         front.SetActive(false);
         back.SetActive(true);
         GameManager.Instance.canOpen=true;
+    }
+    IEnumerator Wait(){
+        yield return new WaitForSeconds(5);
+        if(GameManager.Instance.secondCard==null){
+            GameManager.Instance.firstCard = null;
+            CloseCardInvoke();
+        }
     }
 }

@@ -37,8 +37,8 @@ public class Board : MonoBehaviour
             for(int j=0; j<i;j++){
                 if(array[j]==random){
                     i--;
-                    Debug.Log("돌아가기");
                     check = false;
+                    break;
                 }
             }
             if(check){
