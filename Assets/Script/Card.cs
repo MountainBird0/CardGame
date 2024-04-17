@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public int idx =0;
-    
+    public int idx = 0; //?ïÑ?ûò ?ÑòÎ≤? Î°? ?Ñ∏?åÖ?êú ?ï®?àò ?à´?ûêÎ•? Í∞??†∏????Ñú idx?óê ?†Å?ö©?ï®
+
     public GameObject front;
     public GameObject back;
 
     public Animator anim;
-    
-    public SpriteRenderer frontImage;
 
     AudioSource audioSource;
-    public AudioClip clip; 
+    public AudioClip clip;
 
-    
+    public SpriteRenderer frontImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,28 +33,40 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", true);
         StartCoroutine("FrontToBack");
 
-        if(GameManager.Instance.firstCard==null){
+        //fistCardÍ∞? ÎπÑÏóà?ã§Î©?,
+        if (GameManager.Instance.firstCard == null)
+        {
             GameManager.Instance.firstCard = this;
+
             StartCoroutine("Wait");
         }else{
             GameManager.Instance.secondCard = this;
-            GameManager.Instance.Matched();
-        }
-    }
-    public void DestoryCard(){
-        Invoke("DestoryCardInvoke",0.5f);
+            GameManager.Instance.Matched();}
+
+
     }
 
-    void DestoryCardInvoke(){
+    public void DestroyCard()
+    {
+        Invoke("DestroyCardInvoke", 1.0f);
+    }
+
+    void DestroyCardInvoke()
+    {
         Destroy(gameObject);
     }
-    public void CloseCard(){
-        Invoke("CloseCardInvoke", 0.5f);
+
+    public void CloseCard()
+    {
+        Invoke("CloseCardInvoke", 1.0f);
     }
-    void CloseCardInvoke(){
-        anim.SetBool("isOpen", false);
+    
+    void CloseCardInvoke()
+    {
+        anim.SetBool("ifOpen", false);
         front.SetActive(false);
         back.SetActive(true);
+
     }
     IEnumerator Wait(){
         

@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,13 +17,19 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+    public Text timeTxt;
+    public GameObject endTxt;
+    public GameObject GameClear;
+
     AudioSource audioSource;
-
     public AudioClip clip;
+    public AudioClip fail;
+    public AudioClip gameover;
+    public AudioClip clear;
 
-    public bool canOpen = true;
-    string key = "highScore";
-    public Text score;
+    public int cardCount = 0;
+    float time = 0.0f;
+    float endtime = 30.0f;
 
     public GameObject NamePanel;
     public Text NameText;
@@ -35,17 +40,18 @@ public class GameManager : MonoBehaviour
         if(Instance==null){
             Instance=this;
         }
-        Application.targetFrameRate=60;
+
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2");
@@ -57,29 +63,22 @@ public class GameManager : MonoBehaviour
 
         if(time<0)
         {
-            GameOver();
+            Time.timeScale = 0.0f;
+            endTxt.SetActive(true);
+            audioSource.PlayOneShot(gameover);
         }
     }
 
-    private void GameOver()
+    public void Matched()
     {
-        NamePanel.SetActive(false);
-        Time.timeScale = 0f;
-        endPanel.SetActive(true);
-    }
-
-    public void Matched(){
-        canOpen=false;
-        if(firstCard.idx==secondCard.idx){
+        if (firstCard.idx == secondCard.idx)
+        {
+            //?ŒŒê´´í•´?¼.
             audioSource.PlayOneShot(clip);
-            firstCard.DestoryCard();
-            secondCard.DestoryCard();
-
-            NamePanel.SetActive(true);
-            CheckNickName();
-            carCount-=2;
-
-            if(carCount ==0)
+            firstCard.DestroyCard();
+            secondCard.DestroyCard();
+            cardCount -= 2;
+            if(cardCount == 0)
             {
                 GameOver();
                 HighScoreSet();
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour
             time -= 2;            
             Instantiate(Decreasetime,canvas.transform);
             NamePanel.SetActive(true);
-            NameText.text = "ì‹¤íŒ¨";
+            NameText.text = "?‹¤?Œ¨";
             firstCard.CloseCard();
             secondCard.CloseCard();
             CloseText();
@@ -101,18 +100,18 @@ public class GameManager : MonoBehaviour
     private void CheckNickName()
     {
         switch(firstCard.idx){
-            case 0 : NameText.text = "ë°•ë¯¼ê·œ";break;
-            case 1 : NameText.text = "ì •ëž˜ê·œ";break;
-            case 2 : NameText.text = "ê¶Œì‹ ìš±"; break;
-            case 3 : NameText.text = "ì•ˆí›„ì •"; break;
-            case 4 : NameText.text = "ê¹€ìž¬íœ˜"; break;
-            case 5 : NameText.text = "ë§¤ë‹ˆì €ë‹˜"; break;//ë§¤ë‹ˆì €ë‹˜
-            case 6 : NameText.text = "ë§¤ë‹ˆì €ë‹˜2"; break; //ë§¤ë‹ˆì €ë‹˜22
+            case 0 : NameText.text = "ë°•ë?¼ê·œ";break;
+            case 1 : NameText.text = "? •?ž˜ê·?";break;
+            case 2 : NameText.text = "ê¶Œì‹ ?š±"; break;
+            case 3 : NameText.text = "?•ˆ?›„? •"; break;
+            case 4 : NameText.text = "ê¹??ž¬?œ˜"; break;
+            case 5 : NameText.text = "ë§¤ë‹ˆ????‹˜"; break;//ë§¤ë‹ˆ????‹˜
+            case 6 : NameText.text = "ë§¤ë‹ˆ????‹˜2"; break; //ë§¤ë‹ˆ????‹˜22
             case 7:
-                score.text = "í•¨ì •ì¹´ë“œ ë°œë™!!"; 
+                score.text = "?•¨? •ì¹´ë“œ ë°œë™!!"; 
                 GameOver(); 
                 break; 
-                //í•¨ì •ì¹´ë“œ
+                //?•¨? •ì¹´ë“œ
         }
         CloseText();
     }
@@ -142,12 +141,20 @@ public class GameManager : MonoBehaviour
             else
             {
                 score.text = best.ToString("N2");
+                GameClear.SetActive(true);
+                Time.timeScale = 0.0f;
+                audioSource.PlayOneShot(clear);
             }
         }
         else
         {
-            PlayerPrefs.SetFloat(key, time);
-            score.text = time.ToString("N2");
+            audioSource.PlayOneShot(fail);
+            firstCard.CloseCard();
+            secondCard.CloseCard();
+            //?‹«?•„?¼.
         }
+        
+        firstCard = null;
+        secondCard = null;
     }
 }
