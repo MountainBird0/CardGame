@@ -32,14 +32,16 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", true);
         StartCoroutine("FrontToBack");
 
-        //fistCardę°? ëšě?¤ëŠ?,
         if (GameManager.Instance.firstCard == null)
         {
             GameManager.Instance.firstCard = this;
-
             StartCoroutine("Wait");
         }else{
             GameManager.Instance.secondCard = this;
+            if(GameManager.Instance.firstCard == GameManager.Instance.secondCard){
+                GameManager.Instance.secondCard = null;
+                return;
+            }
             GameManager.Instance.Matched();
         }
 
@@ -69,13 +71,14 @@ public class Card : MonoBehaviour
 
     }
     IEnumerator Wait(){
-        
-        yield return new WaitForSeconds(5);
-        if(GameManager.Instance.firstCard!=null){
-            if(GameManager.Instance.firstCard.idx == this.idx){
-                GameManager.Instance.firstCard = null;
-                CloseCardInvoke();
-            }
+        yield return new WaitForSeconds(4.5f);
+        if(!front.activeSelf){
+            yield break;
+        }
+        yield return new WaitForSeconds(0.5f);
+        if(front.activeSelf){
+            GameManager.Instance.firstCard = null;
+            CloseCardInvoke();
         }
     }
     IEnumerator FrontToBack(){
