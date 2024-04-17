@@ -231,15 +231,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146085438789321547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d8cb0d35960bb49b848c158be4b224, type: 3}
+  m_Script: {fileID: 11500000, guid: a8c64682f79b7b84b905c4dab1273e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   idx: 0
   front: {fileID: 1146085437362667995}
   back: {fileID: 1146085439035554299}
-  anim: {fileID: 7657362034206140566}
-  frontImage: {fileID: 1146085437362667993}
-  clip: {fileID: 8300000, guid: 619d0ec4b90c7244b94c0764008627cc, type: 3}
+  anim: {fileID: 0}
+  clip: {fileID: 0}
+  frontImage: {fileID: 0}
 --- !u!95 &7657362034206140566
 Animator:
   serializedVersion: 5
@@ -250,7 +250,7 @@ Animator:
   m_GameObject: {fileID: 1146085438789321547}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e6fdf4b0dc9366944887c5a80c9495ba, type: 2}
+  m_Controller: {fileID: 9100000, guid: 18c6a430b8260164cab9b0bc5645d4ca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

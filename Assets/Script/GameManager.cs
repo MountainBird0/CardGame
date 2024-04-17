@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
             time -= 2;            
             Instantiate(Decreasetime,canvas.transform);
             NamePanel.SetActive(true);
-            NameText.text = "?��?��";
+            NameText.text = "실패";
             firstCard.CloseCard();
             secondCard.CloseCard();
             CloseText();
@@ -122,19 +122,20 @@ public class GameManager : MonoBehaviour
 
     private void CheckNickName()
     {
-        switch(firstCard.idx){
-            case 0 : NameText.text = "박�?�규";break;
-            case 1 : NameText.text = "?��?���?";break;
-            case 2 : NameText.text = "권신?��"; break;
-            case 3 : NameText.text = "?��?��?��"; break;
-            case 4 : NameText.text = "�??��?��"; break;
-            case 5 : NameText.text = "매니????��"; break;//매니????��
-            case 6 : NameText.text = "매니????��2"; break; //매니????��22
+        switch (firstCard.idx)
+        {
+            case 0: NameText.text = "박민규"; break;
+            case 1: NameText.text = "정래규"; break;
+            case 2: NameText.text = "권신욱"; break;
+            case 3: NameText.text = "안후정"; break;
+            case 4: NameText.text = "김재휘"; break;
+            case 5: NameText.text = "매니저님"; break;//매니저님
+            case 6: NameText.text = "매니저님2"; break; //매니저님22
             case 7:
-                score.text = "?��?��카드 발동!!"; 
-                GameOver(); 
-                break; 
-                //?��?��카드
+                score.text = "함정카드 발동!!";
+                GameOver();
+                break;
+                //함정카드
         }
         CloseText();
     }

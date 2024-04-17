@@ -779,8 +779,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusicSource: {fileID: 0}
   soundEffectSource: {fileID: 0}
-  backgroundMusicClip: {fileID: 0}
-  clickSound: {fileID: 0}
+  backgroundMusicClip: {fileID: 8300000, guid: f87229c739fb0df4f983486993809e23, type: 3}
+  clickSound: {fileID: 8300000, guid: ba766c0369acc8a4bbe8b7009ef95fa7, type: 3}
 --- !u!82 &905801451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ MonoBehaviour:
   secondCard: {fileID: 0}
   endTxt: {fileID: 485470006}
   GameClear: {fileID: 0}
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 7c317c045c3ba984cb3b90dd258e0a27, type: 3}
   fail: {fileID: 8300000, guid: 6cf787b9b0e91034d86cbea574830153, type: 3}
   gameover: {fileID: 8300000, guid: d24d1bc98fbe3674192cbb39f270afde, type: 3}
   clear: {fileID: 8300000, guid: fd5c4cf06f7ef444f810577853f0541d, type: 3}
