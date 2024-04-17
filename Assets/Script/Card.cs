@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public int idx = 0; //?•„?˜ ?„˜ë²? ë¡? ?„¸?Œ…?œ ?•¨?ˆ˜ ?ˆ«?ë¥? ê°?? ¸????„œ idx?— ? ?š©?•¨
-
+    public int idx = 0;
     public GameObject front;
     public GameObject back;
 
@@ -33,7 +32,7 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", true);
         StartCoroutine("FrontToBack");
 
-        //fistCardê°? ë¹„ì—ˆ?‹¤ë©?,
+        //fistCardÄ™Â°? Ã«Å¡Â„Ä›Â—Âˆ?Â‹Â¤Ã«Å ?,
         if (GameManager.Instance.firstCard == null)
         {
             GameManager.Instance.firstCard = this;

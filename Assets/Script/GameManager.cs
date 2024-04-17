@@ -11,14 +11,13 @@ public class GameManager : MonoBehaviour
     public Text timeTxt;
     public GameObject endPanel;
 
-    public int carCount = 0;
     float time=30f;
 
     public Card firstCard;
     public Card secondCard;
 
     public GameObject endTxt;
-    public GameObject GameClear;
+    public GameObject GameClear;//ì–´ë”” ì“°ëŠ”ì§€ ëª¨ë¥´ê² ìŒ
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
     public AudioClip clear;
 
     public int cardCount = 0;
-    float endtime = 30.0f;
 
     public GameObject NamePanel;
     public Text NameText;
@@ -50,7 +48,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        Setting();
+    }
+
+    private void Setting()
+    {
         audioSource = GetComponent<AudioSource>();
+        timeTxt = GameObject.Find("TimeTxt").GetComponent<Text>();
+        endPanel = GameObject.Find("EndPanel");
+        endTxt = GameObject.Find("EndTxt");
+        score = GameObject.Find("Score").GetComponent<Text>();
+        endPanel.SetActive(false);
+        NamePanel = GameObject.Find("NamePanel");
+        NameText = GameObject.Find("NameTxt").GetComponent<Text>();
+        NamePanel.SetActive(false);
+        canvas = GameObject.Find("Canvas");
+        
     }
 
     // Update is called once per frame
@@ -76,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.idx == secondCard.idx)
         {
-            //?ŒŒê´´í•´?¼.
+            //?ï¿½ï¿½ê´´í•´?ï¿½ï¿½.
             audioSource.PlayOneShot(clip);
             firstCard.DestroyCard();
             secondCard.DestroyCard();
@@ -91,7 +104,7 @@ public class GameManager : MonoBehaviour
             time -= 2;            
             Instantiate(Decreasetime,canvas.transform);
             NamePanel.SetActive(true);
-            NameText.text = "?‹¤?Œ¨";
+            NameText.text = "?ï¿½ï¿½?ï¿½ï¿½";
             firstCard.CloseCard();
             secondCard.CloseCard();
             CloseText();
@@ -110,18 +123,18 @@ public class GameManager : MonoBehaviour
     private void CheckNickName()
     {
         switch(firstCard.idx){
-            case 0 : NameText.text = "ë°•ë?¼ê·œ";break;
-            case 1 : NameText.text = "? •?˜ê·?";break;
-            case 2 : NameText.text = "ê¶Œì‹ ?š±"; break;
-            case 3 : NameText.text = "?•ˆ?›„? •"; break;
-            case 4 : NameText.text = "ê¹??¬?œ˜"; break;
-            case 5 : NameText.text = "ë§¤ë‹ˆ????‹˜"; break;//ë§¤ë‹ˆ????‹˜
-            case 6 : NameText.text = "ë§¤ë‹ˆ????‹˜2"; break; //ë§¤ë‹ˆ????‹˜22
+            case 0 : NameText.text = "ë°•ï¿½?ï¿½ê·œ";break;
+            case 1 : NameText.text = "?ï¿½ï¿½?ï¿½ï¿½ï¿½?";break;
+            case 2 : NameText.text = "ê¶Œì‹ ?ï¿½ï¿½"; break;
+            case 3 : NameText.text = "?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½"; break;
+            case 4 : NameText.text = "ï¿½??ï¿½ï¿½?ï¿½ï¿½"; break;
+            case 5 : NameText.text = "ë§¤ë‹ˆ????ï¿½ï¿½"; break;//ë§¤ë‹ˆ????ï¿½ï¿½
+            case 6 : NameText.text = "ë§¤ë‹ˆ????ï¿½ï¿½2"; break; //ë§¤ë‹ˆ????ï¿½ï¿½22
             case 7:
-                score.text = "?•¨? •ì¹´ë“œ ë°œë™!!"; 
+                score.text = "?ï¿½ï¿½?ï¿½ï¿½ì¹´ë“œ ë°œë™!!"; 
                 GameOver(); 
                 break; 
-                //?•¨? •ì¹´ë“œ
+                //?ï¿½ï¿½?ï¿½ï¿½ì¹´ë“œ
         }
         CloseText();
     }
@@ -161,7 +174,7 @@ public class GameManager : MonoBehaviour
             audioSource.PlayOneShot(fail);
             firstCard.CloseCard();
             secondCard.CloseCard();
-            //?‹«?•„?¼.
+            //?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
         }
         
         firstCard = null;

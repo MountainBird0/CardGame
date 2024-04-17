@@ -23,7 +23,7 @@ public class Board : MonoBehaviour
             go.transform.position = new Vector2(x,y);
             go.GetComponent<Card>().Setting(arr[i]);
         }
-        GameManager.Instance.carCount = length - 2;
+        GameManager.Instance.cardCount = length - 2;
     }
     
     private void RandomArray(){
