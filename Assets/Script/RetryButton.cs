@@ -16,7 +16,6 @@ public class RetryButton : MonoBehaviour
             // AudioManager에서 오디오를 재생합니다.
             audioManager.PlayClickSound();
         }
-
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("MainScene_CH");
     }
 }

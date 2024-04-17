@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class RetryButton2 : MonoBehaviour
 {
-    public void Str()
+    public void Retry()
     {
         // Scene을 로드하기 전에 AudioManager 인스턴스를 찾습니다.
         AudioManager audioManager = FindObjectOfType<AudioManager>();
@@ -15,8 +15,8 @@ public class StartButton : MonoBehaviour
         {
             // AudioManager에서 오디오를 재생합니다.
             audioManager.PlayClickSound();
+            audioManager.backgroundMusicPlay();
         }
-
-        SceneManager.LoadScene("StartScene_CH");
+        SceneManager.LoadScene("MainScene_CH");
     }
 }

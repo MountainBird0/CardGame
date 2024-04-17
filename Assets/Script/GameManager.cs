@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public Text timeTxt;
     public GameObject endPanel;
+    public GameObject ClearPanel;
 
     float time=300f;
 
@@ -17,13 +18,15 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public GameObject endTxt;
-    public GameObject GameClear;//어디 쓰는지 모르겠음
+    public GameObject ClearTxt;
 
     AudioSource audioSource;
     public AudioClip clip;
     public AudioClip fail;
     public AudioClip gameover;
     public AudioClip clear;
+    public AudioClip no;
+    public AudioClip CardBGM;
 
     public int cardCount = 0;
 
@@ -59,6 +62,9 @@ public class GameManager : MonoBehaviour
         endTxt = GameObject.Find("EndTxt");
         score = GameObject.Find("Score").GetComponent<Text>();
         endPanel.SetActive(false);
+        ClearPanel = GameObject.Find("ClearPanel");
+        ClearTxt = GameObject.Find("ClearTxt");
+        ClearPanel.SetActive(false);
         NamePanel = GameObject.Find("NamePanel");
         NameText = GameObject.Find("NameTxt").GetComponent<Text>();
         NamePanel.SetActive(false);
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour
 
             if(cardCount == 0)
             {
-                HighScoreSet();
+                GameClear();
             }
         }
         else{
@@ -130,40 +136,20 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(gameover);
     }
 
-    private void CheckNickName()
-    {
-        switch (firstCard.idx)
-        {
-            case 0: NameText.text = "박민규"; break;
-            case 1: NameText.text = "정래규"; break;
-            case 2: NameText.text = "권신욱"; break;
-            case 3: NameText.text = "안후정"; break;
-            case 4: NameText.text = "김재휘"; break;
-            case 5: NameText.text = "매니저님"; break;//매니저님
-            case 6: NameText.text = "매니저님2"; break; //매니저님22
-            case 7:
-                score.text = "함정카드 발동!!";
-                GameOver();
-                break;
-                //함정카드
-        }
-        CloseText();
-    }
-
-
-    public void CloseText()
-    {
-        Invoke("CloseTextInvoke", 0.5f);
-    }
-    void CloseTextInvoke()
+    private void GameOver2()
     {
         NamePanel.SetActive(false);
-        canOpen = true;
+        Time.timeScale = 0f;
+        endPanel.SetActive(true);
     }
 
-
-    private void HighScoreSet()
+    private void GameClear()
     {
+        NamePanel.SetActive(false);
+        Time.timeScale = 0f;
+        ClearPanel.SetActive(true);
+        audioSource.PlayOneShot(clear);
+
         if (PlayerPrefs.HasKey(key))
         {
             float best = PlayerPrefs.GetFloat(key);
@@ -187,7 +173,47 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(clear);
 
         NamePanel.SetActive(false);
-        endPanel.SetActive(true);
+        ClearPanel.SetActive(true);
         Time.timeScale = 0f;
     }
+
+
+    private void CheckNickName()
+    {
+        switch (firstCard.idx)
+        {
+            case 0: NameText.text = "박민규"; break;
+            case 1: NameText.text = "정래규"; break;
+            case 2: NameText.text = "권신욱"; break;
+            case 3: NameText.text = "안후정"; break;
+            case 4: NameText.text = "김재휘"; break;
+            case 5: NameText.text = "매니저님"; break;//매니저님
+            case 6: NameText.text = "매니저님2"; break; //매니저님22
+            case 7:
+                score.text = "함정카드 발동!!";
+                AudioManager audioManager = FindObjectOfType<AudioManager>();
+                GameOver2();
+                audioSource.PlayOneShot(no);
+                audioSource.PlayOneShot(CardBGM);
+                if (audioManager != null)
+                {
+                    audioManager.StopMusicPlay();
+                }
+                break;
+                //함정카드
+        }
+        CloseText();
+    }
+
+
+    public void CloseText()
+    {
+        Invoke("CloseTextInvoke", 0.5f);
+    }
+    void CloseTextInvoke()
+    {
+        NamePanel.SetActive(false);
+        canOpen = true;
+    }
+
 }
