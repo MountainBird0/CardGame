@@ -12,12 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject endPanel;
 
     public int carCount = 0;
-    float time=30;
+    float time=30f;
 
     public Card firstCard;
     public Card secondCard;
 
-    public Text timeTxt;
     public GameObject endTxt;
     public GameObject GameClear;
 
@@ -28,7 +27,6 @@ public class GameManager : MonoBehaviour
     public AudioClip clear;
 
     public int cardCount = 0;
-    float time = 0.0f;
     float endtime = 30.0f;
 
     public GameObject NamePanel;
@@ -36,6 +34,11 @@ public class GameManager : MonoBehaviour
     
     public GameObject Decreasetime;
     public GameObject canvas;
+
+    public bool canOpen = true;
+    string key = "highScore";
+    public Text score;
+
     void Awake(){
         if(Instance==null){
             Instance=this;
@@ -95,6 +98,13 @@ public class GameManager : MonoBehaviour
         }
         firstCard=null;
         secondCard=null;
+    }
+
+    private void GameOver()
+    {
+        NamePanel.SetActive(false);
+        Time.timeScale = 0f;
+        endPanel.SetActive(true);
     }
 
     private void CheckNickName()
