@@ -14,6 +14,14 @@ public class Card : MonoBehaviour
     public AudioClip clip;
 
     public SpriteRenderer frontImage;
+
+    /// <summary>
+    /// ///////////////// card 프리팹에서 추가
+    /// </summary>
+    public SpriteRenderer backImage;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +68,10 @@ public class Card : MonoBehaviour
 
     public void CloseCard()
     {
+        /// <summary>
+        /// ///////////////// 뒤집은 카드 검정으로 변경
+        /// </summary>
+        backImage.color = Color.black;
         Invoke("CloseCardInvoke", 0.5f);
     }
     

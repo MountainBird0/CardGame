@@ -240,6 +240,7 @@ MonoBehaviour:
   anim: {fileID: 7657362034206140566}
   clip: {fileID: 8300000, guid: 34388622f19c32c4dbaf0d8a9a26b211, type: 3}
   frontImage: {fileID: 1146085437362667993}
+  backImage: {fileID: 1146085439035554297}
 --- !u!95 &7657362034206140566
 Animator:
   serializedVersion: 5
