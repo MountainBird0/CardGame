@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     string key = "highScore";
     public Text score;
 
+    public Text filpCountText;
+    private int filpCount = 0;
+
     void Awake(){
         if(Instance==null){
             Instance=this;
@@ -91,6 +94,8 @@ public class GameManager : MonoBehaviour
 
     public void Matched()
     {
+        filpCountText.text = (++filpCount).ToString();
+
         canOpen = false;
         if (firstCard.idx == secondCard.idx)
         {
