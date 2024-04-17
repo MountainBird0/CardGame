@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class RetryBtn : MonoBehaviour
 {
     public void RetryButton(){
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("MainScene_CH");
     }
 }

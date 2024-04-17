@@ -696,8 +696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 400}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 0, y: 460}
+  m_SizeDelta: {x: 200, y: 89.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904986673
 MonoBehaviour:
@@ -940,6 +940,8 @@ MonoBehaviour:
   score: {fileID: 1947083593}
   NamePanel: {fileID: 1494876063}
   NameText: {fileID: 830603598}
+  Decreasetime: {fileID: 1777225658467406696, guid: fb0e48c737196ee4caaaf5353cbcc151, type: 3}
+  canvas: {fileID: 238592650}
 --- !u!82 &1241658902
 AudioSource:
   m_ObjectHideFlags: 0
