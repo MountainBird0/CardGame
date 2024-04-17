@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Text timeTxt;
     public GameObject endPanel;
 
-    float time=30f;
+    float time=300f;
 
     public Card firstCard;
     public Card secondCard;
@@ -79,35 +79,44 @@ public class GameManager : MonoBehaviour
 
         if(time<0)
         {
-            Time.timeScale = 0.0f;
-            endTxt.SetActive(true);
-            audioSource.PlayOneShot(gameover);
+            GameOver();
         }
     }
 
     public void Matched()
     {
+        canOpen = false;
         if (firstCard.idx == secondCard.idx)
         {
             //?��괴해?��.
             audioSource.PlayOneShot(clip);
-            firstCard.DestroyCard();
-            secondCard.DestroyCard();
+            if(cardCount>4){
+                firstCard.DestroyCard();
+                secondCard.DestroyCard();
+            }else{
+                firstCard.DestroyCardInvoke();
+                secondCard.DestroyCardInvoke();
+            }
+
+            NamePanel.SetActive(true);
+            CheckNickName();
             cardCount -= 2;
+
             if(cardCount == 0)
             {
-                GameOver();
                 HighScoreSet();
             }
         }
         else{
-            time -= 2;            
+            time -= 2;
+            audioSource.PlayOneShot(fail);
             Instantiate(Decreasetime,canvas.transform);
             NamePanel.SetActive(true);
             NameText.text = "실패";
             firstCard.CloseCard();
             secondCard.CloseCard();
             CloseText();
+            
         }
         firstCard=null;
         secondCard=null;
@@ -118,6 +127,7 @@ public class GameManager : MonoBehaviour
         NamePanel.SetActive(false);
         Time.timeScale = 0f;
         endPanel.SetActive(true);
+        audioSource.PlayOneShot(gameover);
     }
 
     private void CheckNickName()
@@ -157,7 +167,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey(key))
         {
             float best = PlayerPrefs.GetFloat(key);
-            if (best > time)
+            if (best < time)
             {
                 PlayerPrefs.SetFloat(key, time);
                 score.text = time.ToString("N2");
@@ -165,20 +175,19 @@ public class GameManager : MonoBehaviour
             else
             {
                 score.text = best.ToString("N2");
-                GameClear.SetActive(true);
-                Time.timeScale = 0.0f;
-                audioSource.PlayOneShot(clear);
             }
         }
         else
         {
-            audioSource.PlayOneShot(fail);
-            firstCard.CloseCard();
-            secondCard.CloseCard();
-            //?��?��?��.
+            PlayerPrefs.SetFloat(key, time);
+            score.text = time.ToString("N2");
         }
-        
-        firstCard = null;
-        secondCard = null;
+
+        //GameClear.SetActive(true);
+        audioSource.PlayOneShot(clear);
+
+        NamePanel.SetActive(false);
+        endPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

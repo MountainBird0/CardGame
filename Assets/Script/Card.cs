@@ -40,29 +40,30 @@ public class Card : MonoBehaviour
             StartCoroutine("Wait");
         }else{
             GameManager.Instance.secondCard = this;
-            GameManager.Instance.Matched();}
+            GameManager.Instance.Matched();
+        }
 
 
     }
 
     public void DestroyCard()
     {
-        Invoke("DestroyCardInvoke", 1.0f);
+        Invoke("DestroyCardInvoke", 0.5f);
     }
 
-    void DestroyCardInvoke()
+    public void DestroyCardInvoke()
     {
         Destroy(gameObject);
     }
 
     public void CloseCard()
     {
-        Invoke("CloseCardInvoke", 1.0f);
+        Invoke("CloseCardInvoke", 0.5f);
     }
     
     void CloseCardInvoke()
     {
-        anim.SetBool("ifOpen", false);
+        anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
 

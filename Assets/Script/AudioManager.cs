@@ -29,6 +29,8 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         // 배경음악을 설정하고 재생합니다.
+        backgroundMusicSource=GetComponent<AudioSource>();
+        soundEffectSource = GetComponent<AudioSource>();
         backgroundMusicSource.clip = backgroundMusicClip;
         backgroundMusicSource.Play();
     }

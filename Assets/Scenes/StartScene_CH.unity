@@ -739,8 +739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusicSource: {fileID: 0}
   soundEffectSource: {fileID: 0}
-  backgroundMusicClip: {fileID: 0}
-  clickSound: {fileID: 0}
+  backgroundMusicClip: {fileID: 8300000, guid: f87229c739fb0df4f983486993809e23, type: 3}
+  clickSound: {fileID: 8300000, guid: ba766c0369acc8a4bbe8b7009ef95fa7, type: 3}
 --- !u!82 &1894445351
 AudioSource:
   m_ObjectHideFlags: 0
