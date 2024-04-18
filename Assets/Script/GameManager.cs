@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
             case 2: NameText.text = "권신욱"; break;
             case 3: NameText.text = "안후정"; break;
             case 4: NameText.text = "김재휘"; break;
-            case 5: NameText.text = "매니저님"; break;//매니저님
+            case 5: NameText.text = "김동현"; break;
             case 6: NameText.text = "매니저님2"; break; //매니저님22
             case 7:
                 score.text = "함정카드 발동!!";
