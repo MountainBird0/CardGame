@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 79dd9957f9eb19848b8acf481949907a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - timeTxt: {instanceID: 0}
+  - endPanel: {instanceID: 0}
+  - firstCard: {instanceID: 0}
+  - secondCard: {instanceID: 0}
+  - endTxt: {instanceID: 0}
+  - GameClear: {instanceID: 0}
+  - clip: {fileID: 8300000, guid: f87229c739fb0df4f983486993809e23, type: 3}
+  - fail: {fileID: 8300000, guid: 6cf787b9b0e91034d86cbea574830153, type: 3}
+  - gameover: {fileID: 8300000, guid: d24d1bc98fbe3674192cbb39f270afde, type: 3}
+  - clear: {fileID: 8300000, guid: fd5c4cf06f7ef444f810577853f0541d, type: 3}
+  - NamePanel: {instanceID: 0}
+  - NameText: {instanceID: 0}
+  - Decreasetime: {instanceID: 0}
+  - canvas: {instanceID: 0}
+  - score: {instanceID: 0}
+  executionOrder: 0
+  icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
